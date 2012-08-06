@@ -1,1 +1,2 @@
-test readme
+RBans
+Better than MCBans? I believe so! RBans is a bukkit plugin made like MCBans, but without the ability for players to see who has been banned and what servers have this plugin. Without wither of those abilities, someone who is able to hack the database will not be able to change/add/remove bans or grief servers with the plugin. I find this very smart. If you would like to commit changes to the plugin, simply fork it, make your changes and then commit them to github!
