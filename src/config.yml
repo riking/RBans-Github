@@ -1,0 +1,4 @@
+destroyed-blocks-log-file-name: DestroyedBlocksLog
+placed-blocks-log-file-name: PlacedBlocksLog
+joined-players-log-file-name: JoinedPlayersLog
+player-chat-log-file-name: PlayerChatLog
