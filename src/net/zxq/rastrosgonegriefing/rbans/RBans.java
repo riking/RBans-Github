@@ -1,12 +1,18 @@
 package net.zxq.rastrosgonegriefing.rbans;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import net.zxq.rastrosgonegriefing.commands.BanExecutor;
 import net.zxq.rastrosgonegriefing.commands.KickExecutor;
 import net.zxq.rastrosgonegriefing.commands.RollbackBanExecutor;
 import net.zxq.rastrosgonegriefing.commands.UnBanExecutor;
+import net.zxq.rastrosgonegriefing.listeners.PlayerLoginListener;
 import net.zxq.rastrosgonegriefing.listeners.RBansPlayerListener;
 import net.zxq.rastrosgonegriefing.util.BlockDestroyListStore;
 import net.zxq.rastrosgonegriefing.util.BlockPlacedListStore;
@@ -14,7 +20,13 @@ import net.zxq.rastrosgonegriefing.util.ListStore;
 import net.zxq.rastrosgonegriefing.util.PlayerChatListStore;
 import net.zxq.rastrosgonegriefing.util.PlayerJoinListStore;
 
+import org.bukkit.block.Block;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class RBans extends JavaPlugin
@@ -32,6 +44,7 @@ public class RBans extends JavaPlugin
 	@Override
 	public void onEnable()
 	{
+		PluginManager pm = getServer().getPluginManager();
 		/*
 		this.updateChecker = new UpdateChecker(this, "http://rastrosgonegriefing.zxq.net/mcplugins/rbans/rss/rss.rss");
 		if(this.updateChecker.updateNeeded())
@@ -77,7 +90,8 @@ public class RBans extends JavaPlugin
 		this.playerChat = new PlayerChatListStore(new File(pluginFolder + File.separator + "Player Chat Log.txt"));
 		this.playerChat.loadFile();
 		
-		this.getServer().getPluginManager().registerEvents(new RBansPlayerListener(), this);
+		this.getServer().getPluginManager().registerEvents(new RBansPlayerListener(this), this);
+		log("Enabled");
 		
 		this.getCommand("ban").setExecutor(new BanExecutor());
 		this.getCommand("unban").setExecutor(new UnBanExecutor(this));
