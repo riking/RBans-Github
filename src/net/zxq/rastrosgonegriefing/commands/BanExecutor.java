@@ -9,14 +9,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class BanExecutor implements CommandExecutor
+public class BanExecutor extends RBans implements CommandExecutor
 {
-	private RBans plugin;
-	
-	public BanExecutor(RBans plugin)
-	{
-		this.plugin = plugin;
-	}
+
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -35,14 +30,14 @@ public class BanExecutor implements CommandExecutor
 			return true;
 		}
 		
-		Player ban = this.plugin.getServer().getPlayer(args[0]);
-		this.plugin.bannedPlayers.add(args[0]);
+		Player ban = getServer().getPlayer(args[0]);
+		this.bannedPlayers.add(args[0]);
 		if(ban != null)
 		{
 			ban.setBanned(true);
-			ban.kickPlayer("You have been banned from " + this.plugin.getServer().getName() + ".");
+			ban.kickPlayer("You have been banned from " + getServer().getName() + ".");
 		}
-		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned from " + this.plugin.getServer().getName() + " and will be added from the list on next server reload.");
+		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned from " + getServer().getName() + " and will be added from the list on next server reload.");
 		Bukkit.dispatchCommand(sender, "ban " + args[0]);
 		
 		return true;
