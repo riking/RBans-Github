@@ -20,6 +20,7 @@ import net.zxq.rastrosgonegriefing.util.ListStore;
 import net.zxq.rastrosgonegriefing.util.PlayerChatListStore;
 import net.zxq.rastrosgonegriefing.util.PlayerJoinListStore;
 
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -97,6 +98,19 @@ public class RBans extends JavaPlugin
 		this.getCommand("unban").setExecutor(new UnBanExecutor(this));
 		this.getCommand("kick").setExecutor(new KickExecutor(this));
 		this.getCommand("rollbackban").setExecutor(new RollbackBanExecutor(this));
+		
+		this.getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable()
+		{
+			public void run()
+			{
+				bannedPlayers.saveFile();
+				brokenBlocks.saveFile();
+				placedBlocks.saveFile();
+				playersJoined.saveFile();
+				playerChat.saveFile();
+				getServer().broadcastMessage("Files Saved.");
+			}
+		}, 240L, 800L);
 	}
 	
 	@Override

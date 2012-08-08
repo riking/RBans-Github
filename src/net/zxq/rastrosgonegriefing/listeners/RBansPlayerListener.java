@@ -34,7 +34,13 @@ public class RBansPlayerListener implements Listener
 		Player player = event.getPlayer();
 		
 		plugin.playersJoined.add(event.getPlayer().getDisplayName() + " has joined the server using the ip " + player.getAddress());
-		player.sendMessage(ChatColor.GREEN + "Welcome " + player.getDisplayName() + ". You are being logged by RBans for everything you do, so don't be bad!");
+		
+		if(player.isOp())
+		{
+			player.sendMessage(ChatColor.GREEN + "Welcome [OP]" + player.getDisplayName() + ". All of the logs save every one(1) minute.");
+		}else{
+			player.sendMessage(ChatColor.GREEN + "Welcome " + player.getDisplayName() + ". You are being logged by RBans for everything you do, so don't be bad!");
+		}
 	}
 	
 	@EventHandler()
@@ -64,7 +70,7 @@ public class RBansPlayerListener implements Listener
 					}else{
 						event.getBlock().setType(Material.AIR);
 						plugin.placedBlocks.add(event.getPlayer().getDisplayName() + " tried placing TNT at X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ());
-						plugin.getServer().broadcastMessage(event.getPlayer().getDisplayName() + " tried placing" + ChatColor.RED + " TNT " + ChatColor.WHITE + "at " + "X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ());
+						plugin.getServer().broadcastMessage(event.getPlayer().getDisplayName() + " tried placing " + ChatColor.RED + " TNT " + ChatColor.WHITE + "at " + "X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ());
 					}
 				}
 			}
@@ -80,12 +86,12 @@ public class RBansPlayerListener implements Listener
 					}else{
 						event.getBlock().setType(Material.AIR);
 						plugin.placedBlocks.add(event.getPlayer().getDisplayName() + " tried placing BEDROCK at X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ());
-						plugin.getServer().broadcastMessage(event.getPlayer().getDisplayName() + " tried placing" + ChatColor.RED + " BEDROCK " + ChatColor.WHITE + "at " + "X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ());
+						plugin.getServer().broadcastMessage(event.getPlayer().getDisplayName() + " tried placing " + ChatColor.RED + " BEDROCK " + ChatColor.WHITE + "at " + "X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ());
 					}
 				}
 			}
 			
-			plugin.placedBlocks.add(event.getPlayer().getDisplayName() + " tried placing" + block.getType() + " at X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ());
+			plugin.placedBlocks.add(event.getPlayer().getDisplayName() + " tried placing " + block.getType() + " at X:" + block.getX() + " Y:" + block.getY() + " Z:" + block.getZ());
 	}
 	
 	@EventHandler()
