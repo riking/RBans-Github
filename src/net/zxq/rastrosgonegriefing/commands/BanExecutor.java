@@ -35,14 +35,14 @@ public class BanExecutor implements CommandExecutor
 			return true;
 		}
 		
-		Player ban = plugin.getServer().getPlayer(args[0]);
-		plugin.bannedPlayers.add(args[0]);
+		Player ban = this.plugin.getServer().getPlayer(args[0]);
+		this.plugin.bannedPlayers.add(args[0]);
 		if(ban != null)
 		{
 			ban.setBanned(true);
-			ban.kickPlayer("You have been banned from " + plugin.getServer().getName() + ".");
+			ban.kickPlayer("You have been banned from " + this.plugin.getServer().getName() + ".");
 		}
-		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned from " + plugin.getServer().getName() + " and will be added from the list on next server reload.");
+		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned from " + this.plugin.getServer().getName() + " and will be added from the list on next server reload.");
 		Bukkit.dispatchCommand(sender, "ban " + args[0]);
 		
 		return true;
