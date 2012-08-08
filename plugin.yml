@@ -1,0 +1,16 @@
+name: RBans
+version: 0.1
+main: net.zxq.rastrosgonegriefing.rbans.RBans
+commands:
+    ban:
+       description: Bans a player from the server
+       usage: /ban <player>
+    unban:
+       description: Pardons a player from the server
+       usage: /unban <player>
+    kick:
+       description: Kicks a player from the server
+       usage: /kick <player>
+    rollbackban:
+       description: Bans and rollbacks a player from the server
+       usage: /rollbackban <player>
