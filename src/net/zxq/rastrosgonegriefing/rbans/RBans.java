@@ -90,7 +90,7 @@ public class RBans extends JavaPlugin
 		this.playerChat = new PlayerChatListStore(new File(pluginFolder + File.separator + "Player Chat Log.txt"));
 		this.playerChat.loadFile();
 		
-		this.getServer().getPluginManager().registerEvents(new RBansPlayerListener(this), this);
+		this.getServer().getPluginManager().registerEvents(new RBansPlayerListener(), this);
 		log("Enabled");
 		
 		this.getCommand("ban").setExecutor(new BanExecutor(this));
