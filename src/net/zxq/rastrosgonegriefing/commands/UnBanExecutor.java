@@ -35,13 +35,13 @@ public class UnBanExecutor implements CommandExecutor
 			return true;
 		}
 		
-		Player unban = plugin.getServer().getPlayer(args[0]);
-		plugin.bannedPlayers.remove(args[0]);
+		Player unban = this.plugin.getServer().getPlayer(args[0]);
+		this.plugin.bannedPlayers.remove(args[0]);
 		if(unban != null)
 		{
 			unban.setBanned(false);
 		}
-		sender.sendMessage(ChatColor.GREEN + args[0] + " has been pardoned from " + plugin.getServer().getName() + " and will be removed from the list on next server reload.");
+		sender.sendMessage(ChatColor.GREEN + args[0] + " has been pardoned from " + this.plugin.getServer().getName() + " and will be removed from the list on next server reload.");
 		
 		Bukkit.dispatchCommand(sender, "pardon " + args[0]);
 		//Bukkit.dispatchCommand(sender, "unban " + args[0]);

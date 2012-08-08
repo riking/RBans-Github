@@ -35,10 +35,10 @@ public class KickExecutor implements CommandExecutor
 			return true;
 		}
 		
-		Player kick = plugin.getServer().getPlayer(args[0]);
+		Player kick = this.plugin.getServer().getPlayer(args[0]);
 		Bukkit.dispatchCommand(sender, "kick " + args[0]);
-		kick.kickPlayer("You have been kicked from " + plugin.getServer().getName() + " by an admin.");
-		sender.sendMessage(ChatColor.GREEN + args[0] + " has been kicked from " + plugin.getServer().getName());
+		kick.kickPlayer("You have been kicked from " + this.plugin.getServer().getName() + " by an admin.");
+		sender.sendMessage(ChatColor.GREEN + args[0] + " has been kicked from " + this.plugin.getServer().getName());
 		
 		return true;
 	}

@@ -9,9 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.earth2me.essentials.EssentialsPlayerListener;
-import com.earth2me.essentials.commands.EssentialsCommand;
-
 public class RollbackBanExecutor implements CommandExecutor
 {
 	private RBans plugin;
@@ -39,18 +36,18 @@ public class RollbackBanExecutor implements CommandExecutor
 			return true;
 		}
 		
-		Player ban = plugin.getServer().getPlayer(args[0]);
-		plugin.bannedPlayers.add(args[0]); //ADDING TO BANNED PLAYERS TXT FILE
+		Player ban = this.plugin.getServer().getPlayer(args[0]);
+		this.plugin.bannedPlayers.add(args[0]); //ADDING TO BANNED PLAYERS TXT FILE
 		
 		//SENDING BAN CRAP
 		if(ban != null)
 		{
 			ban.setBanned(true);
-			ban.kickPlayer("You have been banned from " + plugin.getServer().getName() + ".");
+			ban.kickPlayer("You have been banned from " + this.plugin.getServer().getName() + ".");
 		}
 		
 		Bukkit.dispatchCommand(sender, "sudo " + sender.getName() + " co rollback u:" + args[0] + " t:9h");
-		plugin.getServer().broadcastMessage(ChatColor.RED + args[0] + " has been banned and rolledback by " + sender.getName());
+		this.plugin.getServer().broadcastMessage(ChatColor.RED + args[0] + " has been banned and rolledback by " + sender.getName());
 		
 		return true;
 	}
