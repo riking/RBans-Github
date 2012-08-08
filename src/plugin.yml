@@ -11,3 +11,6 @@ commands:
     kick:
        description: Kicks a player from the server
        usage: /kick <player>
+    rollbackban:
+       description: Bans and rollbacks a player from the server
+       usage: /rollbackban <player>

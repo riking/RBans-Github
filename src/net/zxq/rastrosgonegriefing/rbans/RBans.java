@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import net.zxq.rastrosgonegriefing.commands.BanExecutor;
 import net.zxq.rastrosgonegriefing.commands.KickExecutor;
+import net.zxq.rastrosgonegriefing.commands.RollbackBanExecutor;
 import net.zxq.rastrosgonegriefing.commands.UnBanExecutor;
 import net.zxq.rastrosgonegriefing.listeners.PlayerLoginListener;
 import net.zxq.rastrosgonegriefing.listeners.RBansPlayerListener;
@@ -53,14 +54,17 @@ public class RBans extends JavaPlugin
 		}
 		*/
 		
+		/* MAKES CONFIG
 		getConfig().options().copyDefaults(true);
 		saveConfig();
+		*/
 		
 		String pluginFolder = this.getDataFolder().getAbsolutePath();
 		(new File(pluginFolder)).mkdirs();
 		this.bannedPlayers = new ListStore(new File(pluginFolder + File.separator + "localbans.txt"));
 		this.bannedPlayers.loadFile();
 		
+		/* LOG NAMES USING CONFIG.YML
 		this.brokenBlocks = new BlockDestroyListStore(new File(pluginFolder + File.separator + getConfig().getString("destroyed-blocks-log-file-name") + ".txt"));
 		this.brokenBlocks.loadFile();
 		
@@ -72,6 +76,19 @@ public class RBans extends JavaPlugin
 		
 		this.playerChat = new PlayerChatListStore(new File(pluginFolder + File.separator + getConfig().getString("player-chat-log-file-name") + ".txt"));
 		this.playerChat.loadFile();
+		*/
+		
+		this.brokenBlocks = new BlockDestroyListStore(new File(pluginFolder + File.separator + "Destroyed Blocks Log.txt"));
+		this.brokenBlocks.loadFile();
+		
+		this.placedBlocks = new BlockPlacedListStore(new File(pluginFolder + File.separator + "Placed Blocks Log.txt"));
+		this.placedBlocks.loadFile();
+		
+		this.playersJoined = new PlayerJoinListStore(new File(pluginFolder + File.separator + "Joined Players Log.txt"));
+		this.playersJoined.loadFile();
+		
+		this.playerChat = new PlayerChatListStore(new File(pluginFolder + File.separator + "Player Chat Log.txt"));
+		this.playerChat.loadFile();
 		
 		this.getServer().getPluginManager().registerEvents(new RBansPlayerListener(this), this);
 		log("Enabled");
@@ -79,6 +96,7 @@ public class RBans extends JavaPlugin
 		this.getCommand("ban").setExecutor(new BanExecutor(this));
 		this.getCommand("unban").setExecutor(new UnBanExecutor(this));
 		this.getCommand("kick").setExecutor(new KickExecutor(this));
+		this.getCommand("rollbackban").setExecutor(new RollbackBanExecutor(this));
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package net.zxq.rastrosgonegriefing.commands;
 
 import net.zxq.rastrosgonegriefing.rbans.RBans;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -41,6 +42,9 @@ public class UnBanExecutor implements CommandExecutor
 			unban.setBanned(false);
 		}
 		sender.sendMessage(ChatColor.GREEN + args[0] + " has been pardoned from " + plugin.getServer().getName() + " and will be removed from the list on next server reload.");
+		
+		Bukkit.dispatchCommand(sender, "pardon " + args[0]);
+		//Bukkit.dispatchCommand(sender, "unban " + args[0]);
 		
 		return true;
 	}
