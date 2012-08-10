@@ -1,5 +1,5 @@
 name: RBans
-version: 0.2
+version: 0.2.5
 main: net.zxq.rastrosgonegriefing.rbans.RBans
 commands:
     ban:

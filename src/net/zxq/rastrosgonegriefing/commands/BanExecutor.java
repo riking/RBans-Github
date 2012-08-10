@@ -2,7 +2,6 @@ package net.zxq.rastrosgonegriefing.commands;
 
 import net.zxq.rastrosgonegriefing.rbans.RBans;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +10,12 @@ import org.bukkit.entity.Player;
 
 public class BanExecutor extends RBans implements CommandExecutor
 {
-
+	private RBans plugin;
+	
+	public BanExecutor(RBans plugin)
+	{
+		this.plugin = plugin;
+	}
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -30,15 +34,15 @@ public class BanExecutor extends RBans implements CommandExecutor
 			return true;
 		}
 		
-		Player ban = getServer().getPlayer(args[0]);
-		this.bannedPlayers.add(args[0]);
-		this.bannedPlayersbackup.add(args[0]);
+		Player ban = plugin.getServer().getPlayer(args[0]);
+		plugin.bannedPlayers.add(args[0]);
 		if(ban != null)
 		{
-			ban.setBanned(true);
-			ban.kickPlayer("You have been banned from " + getServer().getName() + ".");
+			//plugin.getServer().getPlayer(args[0]).setBanned(true);
+			ban.kickPlayer("You have been banned from " + plugin.getServer().getName() + ".");
 		}
-		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned from " + getServer().getName() + " and will be added from the list on next server reload.");
+		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned.");
+		plugin.bannedPlayers.saveFile();
 		
 		return true;
 	}

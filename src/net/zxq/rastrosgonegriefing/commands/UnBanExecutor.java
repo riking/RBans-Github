@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class UnBanExecutor implements CommandExecutor
+public class UnBanExecutor extends RBans implements CommandExecutor
 {
 	private RBans plugin;
 	
@@ -39,9 +39,10 @@ public class UnBanExecutor implements CommandExecutor
 		this.plugin.bannedPlayers.remove(args[0]);
 		if(unban != null)
 		{
-			unban.setBanned(false);
+			plugin.getServer().getPlayer(args[0]).setBanned(false);
 		}
-		sender.sendMessage(ChatColor.GREEN + args[0] + " has been pardoned from " + this.plugin.getServer().getName() + " and will be removed from the list on next server reload.");
+		sender.sendMessage(ChatColor.GREEN + args[0] + " has been pardoned by " + sender.getName());
+		plugin.bannedPlayers.saveFile();
 		
 		return true;
 	}
@@ -51,5 +52,4 @@ public class UnBanExecutor implements CommandExecutor
 		if(player.isOp() || player.hasPermission(permission)) return true;
 		return false;
 	}
-	
 }
