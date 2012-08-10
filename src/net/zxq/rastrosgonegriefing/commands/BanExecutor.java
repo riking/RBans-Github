@@ -32,13 +32,13 @@ public class BanExecutor extends RBans implements CommandExecutor
 		
 		Player ban = getServer().getPlayer(args[0]);
 		this.bannedPlayers.add(args[0]);
+		this.bannedPlayersbackup.add(args[0]);
 		if(ban != null)
 		{
 			ban.setBanned(true);
 			ban.kickPlayer("You have been banned from " + getServer().getName() + ".");
 		}
 		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned from " + getServer().getName() + " and will be added from the list on next server reload.");
-		Bukkit.dispatchCommand(sender, "ban " + args[0]);
 		
 		return true;
 	}

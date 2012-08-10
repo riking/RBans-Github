@@ -46,6 +46,12 @@ public class RollbackBanExecutor implements CommandExecutor
 			ban.kickPlayer("You have been banned from " + this.plugin.getServer().getName() + ".");
 		}
 		
+		if(plugin.getServer().getPluginManager().getPlugin("CoreProtect") != null) {
+			Bukkit.dispatchCommand(sender, "sudo " + sender.getName() + " co rollback u:" + args[0] + " t:9h");
+		} else if(plugin.getServer().getPluginManager().getPlugin("SWatchdog") != null) {
+			Bukkit.dispatchCommand(sender, "sudo " + sender.getName() + " wundo p:" + args[0] + " 9999 9999 9999 9999");
+		}
+		
 		Bukkit.dispatchCommand(sender, "sudo " + sender.getName() + " co rollback u:" + args[0] + " t:9h");
 		this.plugin.getServer().broadcastMessage(ChatColor.RED + args[0] + " has been banned and rolledback by " + sender.getName());
 		

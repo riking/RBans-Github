@@ -43,9 +43,6 @@ public class UnBanExecutor implements CommandExecutor
 		}
 		sender.sendMessage(ChatColor.GREEN + args[0] + " has been pardoned from " + this.plugin.getServer().getName() + " and will be removed from the list on next server reload.");
 		
-		Bukkit.dispatchCommand(sender, "pardon " + args[0]);
-		//Bukkit.dispatchCommand(sender, "unban " + args[0]);
-		
 		return true;
 	}
 	

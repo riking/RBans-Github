@@ -1,6 +1,9 @@
 package net.zxq.rastrosgonegriefing.rbans;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -30,22 +33,15 @@ public class UpdateChecker
 	}
 	
 	public boolean updateNeeded()
-	{
+	{		
 		try {
 			InputStream input = this.filesFeed.openConnection().getInputStream();
 			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input);
-			
-			Node latestFile = document.getElementsByTagName("item").item(0);
-			NodeList children = latestFile.getChildNodes();
-			
-			this.version = children.item(1).getTextContent().replaceAll("[a-zA-Z ]", "");
-			this.link = children.item(3).getTextContent();
 			
 			plugin.log.info(this.version + this.link);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return false;
 	}
 	
