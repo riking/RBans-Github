@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="C:/Users/Robert/Desktop/Random/plugins/TestBlockIt.jar"/>
+    <options buildIfNeeded="true" compress="false" descriptionLocation="/RBans Fix/out.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" manifestLocation="/RBans Fix/META-INF/MANIFEST.MF" manifestVersion="1.0" reuseManifest="false" saveManifest="true" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <file path="/RBans Fix/.classpath"/>
+        <file path="/RBans Fix/.project"/>
+        <folder path="/RBans Fix/RBans-Github"/>
+        <javaElement handleIdentifier="=RBans Fix/src"/>
+        <file path="/RBans Fix/RBans.jardesc"/>
+        <javaElement handleIdentifier="=RBans Fix/lib"/>
+        <folder path="/RBans Fix/META-INF"/>
+        <file path="/RBans Fix/plugin.yml"/>
+    </selectedElements>
+</jardesc>

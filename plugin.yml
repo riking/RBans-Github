@@ -1,5 +1,5 @@
 name: RBans
-version: 0.2.5
+version: 0.3
 main: net.zxq.rastrosgonegriefing.rbans.RBans
 commands:
     ban:
@@ -14,3 +14,9 @@ commands:
     rollbackban:
        description: Bans and rollbacks a player from the server
        usage: /rollbackban <player>
+    mute:
+       description: Mutes a player from the server
+       usage: /mute <player>
+    unmute:
+       description: Un-Mutes a player from the server
+       usage: /unmute <player>

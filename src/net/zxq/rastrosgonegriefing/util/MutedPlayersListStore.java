@@ -9,21 +9,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashSet;
 
-public class ListStore
+public class MutedPlayersListStore
 {
 	private File storageFile;
 	private ArrayList<String> values;
-	private ArrayList month;
 	
-	public ListStore(File f)
+	public MutedPlayersListStore(File f)
 	{
 		this.storageFile = f;
 		this.values = new ArrayList<String>();
-		
-		int date = Calendar.getInstance().get(Calendar.YEAR);
 		
 		if(this.storageFile.exists() == false)
 		{
