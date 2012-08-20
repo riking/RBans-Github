@@ -23,18 +23,16 @@ public class PlayerLoginListener extends RBans implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerLogin(PlayerLoginEvent event) {
-		String playerName = event.getPlayer().getName();
-		/*
-		if (bannedPlayers.contains(event.getPlayer().getName())) {
-			event.disallow(Result.KICK_BANNED, "You have been banned from "
-					+ getServer().getName() + ".");
-		}
-		*/
-		
+		String playerName = event.getPlayer().getName();		
 		if(plugin.bannedPlayers.contains(playerName))
 		{
 			event.setKickMessage("You have been banned.");
 			event.setResult(Result.KICK_BANNED);
+		}
+		
+		if(plugin.tban.contains(playerName))
+		{
+			event.disallow(Result.KICK_BANNED, "You have been banned.");
 		}
 	}
 }

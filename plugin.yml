@@ -1,6 +1,7 @@
 name: RBans
 version: 0.3
 main: net.zxq.rastrosgonegriefing.rbans.RBans
+website: http://dev.bukkit.org/server-mods/rbans
 commands:
     ban:
        description: Bans a player from the server
@@ -20,3 +21,15 @@ commands:
     unmute:
        description: Un-Mutes a player from the server
        usage: /unmute <player>
+    tempban:
+      description: Used to temporarily ban online players.
+      usage: /tempban <player> <amount> <unit>
+    rframe:
+      description: Opens the admin frame for RBans.
+      usage: /rframe
+    info:
+      description: Returns information about the selected player.
+      usage: /info <player>
+    rbans rb:
+      description: Returns information about the selected player.
+      usage: /rbans rb <player> <event> <world>

@@ -8,11 +8,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class BanExecutor extends RBans implements CommandExecutor
+public class PlayerInfoExecutor extends RBans implements CommandExecutor
 {
 	private RBans plugin;
 	
-	public BanExecutor(RBans plugin)
+	public PlayerInfoExecutor(RBans plugin)
 	{
 		this.plugin = plugin;
 	}
@@ -21,7 +21,7 @@ public class BanExecutor extends RBans implements CommandExecutor
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender instanceof Player)
 		{
-			if(!permCheck((Player)sender, "rbans.ban"))
+			if(!permCheck((Player)sender, "rbans.playerinfo"))
 			{
 				sender.sendMessage(ChatColor.RED + "You do not have permission to do this command.");
 				return true;
@@ -30,19 +30,22 @@ public class BanExecutor extends RBans implements CommandExecutor
 		
 		if(args.length != 1)
 		{
-			sender.sendMessage(ChatColor.RED + "Usage: /ban <player>");
+			sender.sendMessage(ChatColor.RED + "Usage: /info <player>");
 			return true;
 		}
 		
-		Player ban = plugin.getServer().getPlayer(args[0]);
-		RBans.bannedPlayers.add(args[0]);
-		if(ban != null)
+		Player info = plugin.getServer().getPlayer(args[0]);
+		if(info != null)
 		{
-			//plugin.getServer().getPlayer(args[0]).setBanned(true);
-			ban.kickPlayer("You have been banned from " + plugin.getServer().getName() + ".");
+			sender.sendMessage("Name: " + info.getName());
+			sender.sendMessage("Display Name: " + info.getDisplayName());
+			sender.sendMessage("IP: " + info.getAddress());
+			sender.sendMessage("Whitelisted: " + info.isWhitelisted());
+			sender.sendMessage("EXP Level: " + info.getExpToLevel());
+			sender.sendMessage("Health: " + info.getHealth());
+			sender.sendMessage("OP: " + info.isOp());
+			sender.sendMessage("Flying: " + info.isFlying());
 		}
-		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned.");
-		RBans.bannedPlayers.saveFile();
 		
 		return true;
 	}

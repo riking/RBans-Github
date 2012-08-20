@@ -38,7 +38,22 @@ public class UpdateChecker
 			InputStream input = this.filesFeed.openConnection().getInputStream();
 			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(input);
 			
-			plugin.log.info(this.version + this.link);
+			Node latestFile = document.getElementsByTagName("item").item(0);
+			NodeList children = latestFile.getChildNodes();
+			
+			String version = children.item(1).getTextContent().replaceAll("[a-zA-Z ]", "");
+			String link = children.item(3).getTextContent();
+			
+			if(!plugin.getDescription().getVersion().equals(version))
+			{
+				plugin.log("");
+				plugin.log.warning("----- RBans Update Checker -----");
+				plugin.log.warning("v" + version + " is out! You are running v" + plugin.getDescription().getVersion());
+				plugin.log.warning("Get it here: " + link);
+				plugin.log.warning("--------------------------------");
+				plugin.log("");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
