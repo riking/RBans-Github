@@ -39,7 +39,7 @@ public class BanExecutor extends RBans implements CommandExecutor
 		if(ban != null)
 		{
 			//plugin.getServer().getPlayer(args[0]).setBanned(true);
-			ban.kickPlayer("You have been banned from " + plugin.getServer().getName() + ".");
+			ban.kickPlayer("You have been banned from " + plugin.getServer().getServerName() + ".");
 		}
 		sender.sendMessage(ChatColor.GREEN + args[0] + " has been banned.");
 		RBans.bannedPlayers.saveFile();

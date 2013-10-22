@@ -56,7 +56,7 @@ public class RollbackBanExecutor extends RBans implements CommandExecutor
 		if(ban != null)
 		{
 			ban.setBanned(true);
-			ban.kickPlayer("You have been banned and rolledback from " + this.plugin.getServer().getName() + ".");
+			ban.kickPlayer("You have been banned and rolledback from " + this.plugin.getServer().getServerName() + ".");
 		}
 		this.plugin.getServer().broadcastMessage(ChatColor.RED + args[0] + " has been banned and rolledback by " + sender.getName());
 		
